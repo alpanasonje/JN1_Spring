@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd">
+
+<context:annotation-config/>
+	<bean id="obj1" class="com.tnsif.spring.Address">
+		<property name="id" value="101"></property>
+	</bean>
+
+	<bean id="obj2" class="com.tnsif.spring.Address">
+		<property name="id" value="102"></property>
+	</bean>
+	
+	<bean id="obj3" class="com.tnsif.spring.AddressOne" init-method="init" destroy-method="destroy">
+		<property name="id" value="103"></property>
+	</bean>
+	
+	<bean id="obj4" class="com.tnsif.spring.AddressTwo">
+		<property name="id" value="104"></property>
+	</bean>
+	
+	<bean id="address" class="com.tnsif.spring.Address">
+		<property name="id" value="105"></property>
+	</bean>
+	
+	<!-- Autowire with XML configuration using reference of the object -->
+	<bean id="personObj" class="com.tnsif.spring.Person">
+	<property name="id" value="10"></property>
+	<property name="name" value="Aniket"></property>
+	<property name="address" ref="obj1"></property>
+	</bean>
+	
+	<!-- Autowire with XML configuration using autowiring byName -->
+	<bean id="personObj1" class="com.tnsif.spring.Person" autowire="byName">
+	<property name="id" value="10"></property>
+	<property name="name" value="Aniket"></property>
+	</bean>
+	
+	
+	<!-- Autowire with XML configuration using autowiring byType (requires single object) -->
+	<!-- <bean id="personObj1" class="com.tnsif.spring.Person" autowire="byType">
+	<property name="id" value="10"></property>
+	<property name="name" value="Aniket"></property>
+	</bean> -->
+	
+	
+	<!-- Autowire with XML configuration using autowiring constrcutor -->
+	<bean id="personObj2" class="com.tnsif.spring.Person" autowire="constructor">
+	<property name="id" value="20"></property>
+	<property name="name" value="Nikhil"></property>
+	<constructor-arg  ref = "obj1" />	
+	</bean>
+	
+	<!-- Autowiring with annotation -->
+	<bean id="personObj3" class="com.tnsif.spring.PersonOne" autowire="no">
+	<property name="id" value="30"></property>
+	<property name="name" value="Pooja"></property>
+	
+	</bean>
+	
+	
+</beans>
